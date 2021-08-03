@@ -1,4 +1,4 @@
-export default function AuthLayout({ children }) {
+export default function Layout({ children }) {
 
   return (
     <>
