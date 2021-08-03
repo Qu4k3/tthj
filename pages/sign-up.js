@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import SignUpForm from '../components/forms/SignUpForm'
 import AuthLayout from '../layouts/AuthLayout'
 
 export default function SignUp() {
@@ -9,9 +10,7 @@ export default function SignUp() {
         <title key="title">Sign Up | Technical Test Hiberus</title>
       </Head>
 
-      {
-        // Register form
-      }
+      <SignUpForm />
 
       <p className="mt-2 text-center text-md text-gray-500">
         ¿Ya tienes cuenta?{' '}
