@@ -8,3 +8,37 @@ html,
 body {
   background-color: #081524;
 }
+
+@layer components {
+  .btn-white {
+    @apply border-white border-2 rounded-full text-white px-4 py-2;
+  }
+  .btn-white:hover {
+    @apply bg-white bg-opacity-10 transition ease-out duration-100;
+  }
+  .btn-white:focus {
+    @apply outline-none;
+  }
+
+  input.styled,
+  select.styled,
+  textarea.styled {
+    @apply bg-gray-100 bg-opacity-5 appearance-none rounded-3xl w-full py-2 px-4 text-gray-100 leading-tight;
+  }
+  input.styled:focus,
+  select.styled:focus,
+  textarea.styled:focus {
+    @apply outline-none bg-opacity-10 transition ease-out duration-100;
+  }
+
+  .form-validation-error {
+    @apply mt-2 text-xs text-red-500;
+  }
+
+  .form-general-error {
+    @apply mb-4 text-red-500 text-center text-sm bg-red-600 bg-opacity-10 p-2 rounded-lg;
+  }
+  .form-general-success {
+    @apply mb-4 text-green-500 text-center bg-green-600 bg-opacity-10 p-2 rounded;
+  }
+}
