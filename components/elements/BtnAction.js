@@ -8,7 +8,7 @@ export default function BtnAction(props) {
 
   return (
     <>
-      <button onClick={props.onClick} type={props.type} form={props.form} className={'btn-white ' + (props.styles || '') + btnStatusChange}>{props.title || ''}{props.icon || ''}</button>
+      <button onClick={props.onClick} className={'btn-white ' + (props.styles || '') + btnStatusChange}>{props.icon || ''}{props.title || ''}</button>
     </>
   );
 }
