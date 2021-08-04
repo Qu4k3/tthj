@@ -3,7 +3,6 @@ import Head from 'next/head'
 import useSWR from 'swr'
 import BtnAction from '../../../components/elements/BtnAction'
 import { CornerUpLeft } from 'react-feather'
-import Layout from '../../../layouts/Layout'
 
 export default function UserView() {
 
@@ -44,9 +43,3 @@ export default function UserView() {
     </>
   )
 };
-
-UserView.getLayout = (page) => (
-  <Layout>
-    {page}
-  </Layout>
-)

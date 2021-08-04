@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import LoginForm from '../components/forms/LoginForm'
-import Layout from '../layouts/Layout'
 
 export default function Login() {
   return (
@@ -21,9 +20,3 @@ export default function Login() {
     </>
   )
 }
-
-Login.getLayout = (page) => (
-  <Layout>
-    {page}
-  </Layout>
-)

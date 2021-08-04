@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import users from '../data/array_users.json';
-import Layout from '../layouts/Layout';
 import UserListItem from '../components/elements/UserListItem'
 import { User } from 'react-feather';
 
@@ -25,9 +24,3 @@ export default function Users() {
     </>
   )
 }
-
-Users.getLayout = (page) => (
-  <Layout>
-    {page}
-  </Layout>
-)

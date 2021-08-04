@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import UserForm from '../components/forms/UserForm'
-import Layout from '../layouts/Layout'
 
 export default function SignUp() {
   return (
@@ -21,9 +20,3 @@ export default function SignUp() {
     </>
   )
 }
-
-SignUp.getLayout = (page) => (
-  <Layout>
-    {page}
-  </Layout>
-)
