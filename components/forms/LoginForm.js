@@ -15,7 +15,7 @@ export default function LoginForm() {
   const onSubmit = (data) => {
     setIsLoading(true);
     setError(null);
-    fetch(`${process.env.BASE_URL}/api/v1/auth/log-in`, {
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/auth/log-in`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -29,6 +29,7 @@ export default function LoginForm() {
           setError(data.message);
         } else {
           setIsLoading(true)
+          console.log(data)
           router.push('/')
         }
       });

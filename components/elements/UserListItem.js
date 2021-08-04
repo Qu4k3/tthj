@@ -20,31 +20,23 @@ export default function UserListItem({ user }) {
   }
 
   function handleDeleteUser() {
-    closeDialog()
-    toast.success('Eliminado')
 
-    /*
-        try {
-          fetch(`/api/v1/users/${user.id}`, {
-            method: 'DELETE'
-          })
-            .then((response) => response.json())
-            .then((result) => {
-              console.log(result)
-            })
-            .then(() => {
-              addToast("Colección eliminada", {
-                appearance: 'success',
-                autoDismiss: true,
-              })
-            })
+    closeDialog()
+
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/users/${user.id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`
+      }
+    })
+      .then(response => {
+        if (response.status && response.status == 404) {
+          toast.error('No existe este usuario')
+        } else if (response.status && response.status == 204) {
+          toast.success('Usuario eliminado correctamente')
         }
-        catch (error) {
-          addToast(error, {
-            appearance: 'error',
-            autoDismiss: true,
-          })
-        };*/
+      });
 
   }
 
@@ -75,7 +67,9 @@ export default function UserListItem({ user }) {
           </Link>
 
           <Popover className="relative">
-            <Popover.Button className="btn-item-list"><MoreVertical className="text-gray-200" /></Popover.Button>
+            <Popover.Button className="btn-item-list">
+              <MoreVertical className="text-gray-200" />
+            </Popover.Button>
 
             <Popover.Panel
               className="absolute z-10 right-12 top-0"
@@ -88,12 +82,8 @@ export default function UserListItem({ user }) {
               </div>
             </Popover.Panel>
           </Popover>
-
         </div>
-
-
       </div>
-
 
       <Dialog
         initialFocus={deleteButtonRef}

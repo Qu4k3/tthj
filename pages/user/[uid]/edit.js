@@ -4,20 +4,44 @@ import useSWR from 'swr'
 import BtnAction from '../../../components/elements/BtnAction'
 import { CornerUpLeft, Save } from 'react-feather'
 import UserForm from '../../../components/forms/UserForm'
+import { useEffect, useState } from 'react'
 
 export default function UserView() {
 
   const router = useRouter()
   const { uid } = router.query
 
-  const { data, error } = useSWR(`${process.env.BASE_URL}/api/v1/users/${uid}`)
-  if (error) return <div className="swr-error">no se pudo cargar</div>
-  if (!data) return <div className="swr-error">cargando...</div>
+  const [user, setUser] = useState()
+
+  /*const fetcher = async () =>
+    await fetch({
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`
+      }
+    }).then(response => response.json())
+
+  const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/users/${uid}`, fetcher)*/
+
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/users/${uid}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        setUser(data)
+      });
+  }, [uid])
 
   return (
     <>
       <Head>
-        <title key="title">Editando {data.name} | Technical Test Hiberus</title>
+        <title key="title">Editando usuario | Technical Test Hiberus</title>
       </Head>
 
       <div className="flex flex-col items-center gap-6 py-4 px-4">
@@ -25,7 +49,7 @@ export default function UserView() {
           <div className="h-44 w-44 rounded-full bg-white bg-opacity-10"></div>
         </div>
 
-        <UserForm data={data} />
+        <UserForm data={user} />
 
         <BtnAction
           onClick={() => router.back()}
