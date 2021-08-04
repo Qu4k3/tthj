@@ -23,9 +23,11 @@ export default function LoginForm() {
       .then(response => response.json())
       .then(data => {
         setIsLoading(false)
-        if (data.statusCode !== 200) {
+        if (data.statusCode && data.statusCode !== 200) {
           setError(data.message);
-          return;
+        } else {
+          setIsLoading(true)
+          console.log(data)
         }
       });
   };
@@ -85,7 +87,12 @@ export default function LoginForm() {
         )}
       </div>
 
-      <BtnAction type="submit" styles="mt-8 m-auto flex" title="Iniciar sesión" isLoading={isLoading} />
+      <BtnAction
+        type="submit"
+        styles="mt-8 m-auto flex"
+        title="Iniciar sesión"
+        isLoading={isLoading}
+      />
 
     </form>
   );
