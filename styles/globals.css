@@ -13,7 +13,7 @@
 
 @layer components {
   .btn-white {
-    @apply border-white border-2 rounded-full text-white px-4 py-2;
+    @apply border-white border-2 rounded-full text-white px-4 py-2 flex items-center;
   }
   .btn-white:hover {
     @apply bg-white bg-opacity-10 transition ease-out duration-100;
@@ -42,5 +42,25 @@
   }
   .form-general-success {
     @apply mb-4 text-green-500 text-center bg-green-600 bg-opacity-10 p-2 rounded;
+  }
+
+  .btn-item-list {
+    @apply flex py-2 px-2 bg-white bg-opacity-5 rounded-2xl;
+  }
+  .btn-item-list:hover {
+    @apply bg-opacity-10 ease-out duration-100;
+  }
+  .btn-item-list:focus {
+    @apply bg-opacity-20 ease-out duration-100;
+  }
+
+  .popover {
+    @apply flex flex-col bg-main rounded-xl p-2;
+  }
+  .popover-item {
+    @apply flex gap-2 whitespace-nowrap rounded-xl p-2 place-items-center text-white my-0.5 ease-out duration-100;
+  }
+  .popover-item:hover {
+    @apply bg-white bg-opacity-5;
   }
 }
