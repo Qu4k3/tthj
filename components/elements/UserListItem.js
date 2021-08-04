@@ -94,11 +94,11 @@ export default function UserListItem({ user }) {
         <div className="flex-shrink-0 h-10 w-10">
           <div className="h-10 w-10 rounded-full bg-white bg-opacity-10"></div>
         </div>
-        <div className="mx-4 truncate">
-          <div className="text-sm font-medium text-gray-200">
+        <div className="mx-4 overflow-ellipsis overflow-hidden">
+          <div className="text-sm font-medium text-gray-200 truncate">
             {user.name} {user.surname}
           </div>
-          <div className="text-sm text-gray-200">
+          <div className="text-sm text-gray-200 truncate">
             {user.email}
           </div>
         </div>
