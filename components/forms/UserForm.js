@@ -1,8 +1,17 @@
 import BtnAction from '../elements/BtnAction'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react';
+import { Save } from 'react-feather';
+import { useRouter } from "next/router"
 
-export default function SignUpForm() {
+export default function UserForm({ data }) {
+
+  const router = useRouter()
+  const { uid } = router.query
+
+  if (router.pathname.includes("/edit")) {
+    var pathSection = "edit";
+  }
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -10,8 +19,7 @@ export default function SignUpForm() {
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(JSON.stringify(data))
+  const createUser = (data) => {
     //setIsLoading(true);
     setError(null);
     fetch('http://51.38.51.187:5050/api/v1/auth/sign-up', {
@@ -25,13 +33,48 @@ export default function SignUpForm() {
       .then(response => response.json())
       .then(data => {
         setIsLoading(false)
+        console.log(data)
         if (data.statusCode == 204 || data.statusCode == 409) {
           setError(data.message);
-          return;
         } else {
           setAccountCreated(true);
         }
       });
+  };
+
+  const updateUser = (data) => {
+    try {
+      fetch(`http://51.38.51.187:5050/api/v1/users/${uid}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "email": data.email,
+          "password": data.password,
+          "name": data.name,
+          "surname": data.surname,
+          "id": uid
+        })
+      })
+        .then((response) => response.json())
+        .then(() => {
+          // informar de actualización del usuario
+        })
+    }
+    catch (error) {
+      setError(error);
+    };
+  };
+
+
+  const onSubmit = (data) => {
+    setAccountCreated(false)
+    if (pathSection == "edit") {
+      updateUser(data);
+    } else {
+      createUser(data);
+    }
   };
 
   return (
@@ -141,9 +184,20 @@ export default function SignUpForm() {
           </div>
         )}
       </div>
-
-      <BtnAction type="submit" styles="mt-8 m-auto flex" title="Crear cuenta" isLoading={isLoading} />
-
+      {pathSection == "edit"
+        ? <BtnAction
+          icon={<Save size="18" className="mr-2" />}
+          title="Guardar cambios"
+          styles="mt-8 m-auto"
+          type="submit"
+        />
+        : <BtnAction
+          type="submit"
+          styles="mt-8 m-auto"
+          title="Crear cuenta"
+          isLoading={isLoading}
+        />
+      }
     </form>
   );
 }
