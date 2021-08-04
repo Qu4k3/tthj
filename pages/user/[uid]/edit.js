@@ -1,9 +1,10 @@
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import useSWR from 'swr'
-import BtnAction from '../../components/elements/BtnAction'
-import { CornerUpLeft } from 'react-feather'
-import Layout from '../../layouts/Layout'
+import BtnAction from '../../../components/elements/BtnAction'
+import { CornerUpLeft, Save } from 'react-feather'
+import Layout from '../../../layouts/Layout'
+import UserForm from '../../../components/forms/UserForm'
 
 export default function UserView() {
 
@@ -17,26 +18,21 @@ export default function UserView() {
   return (
     <>
       <Head>
-        <title key="title">{data.name} | Technical Test Hiberus</title>
+        <title key="title">Editando {data.name} | Technical Test Hiberus</title>
       </Head>
 
       <div className="flex flex-col items-center gap-6 py-4 px-4">
         <div className="flex-shrink-0 h-44 w-44">
           <div className="h-44 w-44 rounded-full bg-white bg-opacity-10"></div>
         </div>
-        <div className="mx-4 flex flex-col items-center gap-6 mb-6">
-          <div className="text-sm font-medium text-gray-200">
-            {data.name} {data.surname} lorem
-          </div>
-          <div className="text-sm text-gray-200">
-            {data.email} lorem
-          </div>
-        </div>
+
+        <UserForm data={data} />
 
         <BtnAction
           onClick={() => router.back()}
           icon={<CornerUpLeft size="18" className="mr-2" />}
           title="Volver"
+          styles="border-none"
         />
 
       </div>
