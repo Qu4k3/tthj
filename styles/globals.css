@@ -7,7 +7,7 @@
 @layer base {
   html,
   body {
-    @apply bg-main;
+    @apply bg-main text-white;
   }
 }
 
