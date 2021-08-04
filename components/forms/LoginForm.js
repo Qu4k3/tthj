@@ -1,8 +1,11 @@
 import BtnAction from '../elements/BtnAction'
 import { useForm } from 'react-hook-form';
 import { useState } from 'react'
+import { useRouter } from 'next/router';
 
 export default function LoginForm() {
+
+  const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -12,12 +15,11 @@ export default function LoginForm() {
   const onSubmit = (data) => {
     setIsLoading(true);
     setError(null);
-    fetch('http://51.38.51.187:5050/api/v1/auth/log-in', {
+    fetch(`${process.env.BASE_URL}/api/v1/auth/log-in`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
+        'Content-Type': 'application/json'
       }
     })
       .then(response => response.json())
@@ -27,7 +29,7 @@ export default function LoginForm() {
           setError(data.message);
         } else {
           setIsLoading(true)
-          console.log(data)
+          router.push('/')
         }
       });
   };

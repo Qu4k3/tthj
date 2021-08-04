@@ -10,7 +10,7 @@ export default function UserView() {
   const router = useRouter()
   const { uid } = router.query
 
-  const { data, error } = useSWR(`http://51.38.51.187:5050/api/v1/users/${uid}`)
+  const { data, error } = useSWR(`${process.env.BASE_URL}/api/v1/users/${uid}`)
   if (error) return <div className="swr-error">no se pudo cargar</div>
   if (!data) return <div className="swr-error">cargando...</div>
 

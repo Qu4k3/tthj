@@ -22,7 +22,7 @@ export default function UserForm({ data }) {
   const createUser = (data) => {
     //setIsLoading(true);
     setError(null);
-    fetch('http://51.38.51.187:5050/api/v1/auth/sign-up', {
+    fetch(`${process.env.BASE_URL}//api/v1/auth/sign-up`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -32,7 +32,7 @@ export default function UserForm({ data }) {
       .then(response => {
         setIsLoading(false)
         if (response.status && response.status == 409) {
-          setError('Ya existe una cuenta con ese email');
+          setError('Ya existe una cuenta con este email');
         } else {
           console.log('creado')
           setAccountCreated(true);
@@ -44,7 +44,7 @@ export default function UserForm({ data }) {
 
   const updateUser = (data) => {
     try {
-      fetch(`http://51.38.51.187:5050/api/v1/users/${uid}`, {
+      fetch(`${process.env.BASE_URL}/api/v1/users/${uid}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
