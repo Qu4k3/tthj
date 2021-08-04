@@ -54,6 +54,47 @@ export default function UserListItem({ user }) {
         position="top-center"
         reverseOrder={false}
       />
+
+      <div className="flex items-center py-4 px-4">
+        <div className="flex-shrink-0 h-10 w-10">
+          <div className="h-10 w-10 rounded-full bg-white bg-opacity-10"></div>
+        </div>
+        <div className="mx-4 overflow-ellipsis overflow-hidden">
+          <div className="text-sm font-medium text-gray-200 truncate">
+            {user.name} {user.surname}
+          </div>
+          <div className="text-sm text-gray-200 truncate">
+            {user.email}
+          </div>
+        </div>
+        <div className="ml-auto flex gap-2">
+          <Link href={`/user/${user.id}`}>
+            <a className="btn-item-list">
+              <Eye className="text-gray-200" />
+            </a>
+          </Link>
+
+          <Popover className="relative">
+            <Popover.Button className="btn-item-list"><MoreVertical className="text-gray-200" /></Popover.Button>
+
+            <Popover.Panel
+              className="absolute z-10 right-12 top-0"
+            >
+              <div className="popover">
+                <Link href={`/user/${user.id}/edit`}>
+                  <a className="popover-item"><Edit3 size="16" />Editar usuario</a>
+                </Link>
+                <button className="popover-item" onClick={openDialog}><Trash size="16" />Eliminar usuario</button>
+              </div>
+            </Popover.Panel>
+          </Popover>
+
+        </div>
+
+
+      </div>
+
+
       <Dialog
         initialFocus={deleteButtonRef}
         open={isDialogOpen}
@@ -90,42 +131,6 @@ export default function UserListItem({ user }) {
           </div>
         </div>
       </Dialog>
-      <div className="flex items-center py-4 px-4">
-        <div className="flex-shrink-0 h-10 w-10">
-          <div className="h-10 w-10 rounded-full bg-white bg-opacity-10"></div>
-        </div>
-        <div className="mx-4 overflow-ellipsis overflow-hidden">
-          <div className="text-sm font-medium text-gray-200 truncate">
-            {user.name} {user.surname}
-          </div>
-          <div className="text-sm text-gray-200 truncate">
-            {user.email}
-          </div>
-        </div>
-        <div className="ml-auto flex gap-2">
-          <Link href={`/user/${user.id}`}>
-            <a className="btn-item-list">
-              <Eye className="text-gray-200" />
-            </a>
-          </Link>
-
-          <Popover className="relative">
-            <Popover.Button className="btn-item-list"><MoreVertical className="text-gray-200" /></Popover.Button>
-
-            <Popover.Panel
-              className="absolute z-10 right-12 top-0"
-            >
-              <div className="popover">
-                <a className="popover-item" href={`/user/${user.id}/edit`}><Edit3 size="16" />Editar usuario</a>
-                <button className="popover-item" onClick={openDialog}><Trash size="16" />Eliminar usuario</button>
-              </div>
-            </Popover.Panel>
-          </Popover>
-
-        </div>
-
-
-      </div>
     </>
   );
 }
