@@ -26,20 +26,20 @@ export default function UserForm({ data }) {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
+        'Content-Type': 'application/json'
       }
     })
-      .then(response => response.json())
-      .then(data => {
+      .then(response => {
         setIsLoading(false)
-        console.log(data)
-        if (data.statusCode == 204 || data.statusCode == 409) {
-          setError(data.message);
+        if (response.status && response.status == 409) {
+          setError('Ya existe una cuenta con ese email');
         } else {
+          console.log('creado')
           setAccountCreated(true);
         }
       });
+
+    console.log(accountCreated)
   };
 
   const updateUser = (data) => {
