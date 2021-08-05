@@ -9,7 +9,9 @@ export default function Layout({ children }) {
 
   useEffect(() => {
     if (sessionStorage.getItem("accessToken") === null) {
-      router.push('/login')
+      if (!router.pathname.includes("/login") && !router.pathname.includes("/sign-up")) {
+        router.push('/login')
+      }
     }
   })
 
