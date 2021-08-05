@@ -8,31 +8,16 @@ export default function Users() {
 
   const [users, setUsers] = useState()
 
-  /*const fetcher = async () =>
-    await fetch({
-      method: "GET",
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.TOKEN}`
-      }
-    }).then(response => response.json())
-
-
-  const { data } = useSWR(`${process.env.BASE_URL}/api/v1/users`, fetcher)
-
-  console.log(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/users`)*/
-
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/users`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`
+        'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`
       }
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         setUsers(data)
       });
   }, [])
@@ -49,7 +34,7 @@ export default function Users() {
         <span className="bg-white bg-opacity-5 px-2 py-1 rounded-lg flex items-center text-lg"><User size="18" className="mr-2" /> {users && users.count}</span>
       </h1>
       <ul>
-        {users && users.items.map(user => (
+        {users && users.items && users.items.map(user => (
           <li className="rounded-lg bg-white bg-opacity-5 mb-2" key={user.id}>
             <UserListItem user={user} />
           </li>

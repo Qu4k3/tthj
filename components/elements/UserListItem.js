@@ -27,7 +27,7 @@ export default function UserListItem({ user }) {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`
+        'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`
       }
     })
       .then(response => {

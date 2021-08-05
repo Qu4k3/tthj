@@ -20,7 +20,7 @@ export default function LoginForm() {
       body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
     })
       .then(response => response.json())
       .then(data => {
@@ -29,7 +29,7 @@ export default function LoginForm() {
           setError(data.message);
         } else {
           setIsLoading(true)
-          console.log(data)
+          sessionStorage.setItem('accessToken', data.accessToken)
           router.push('/')
         }
       });

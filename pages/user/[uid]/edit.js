@@ -13,23 +13,12 @@ export default function UserView() {
 
   const [user, setUser] = useState()
 
-  /*const fetcher = async () =>
-    await fetch({
-      method: "GET",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`
-      }
-    }).then(response => response.json())
-
-  const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/users/${uid}`, fetcher)*/
-
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/users/${uid}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`
+        'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`
       }
     })
       .then(response => response.json())
