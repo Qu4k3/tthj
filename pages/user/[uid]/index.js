@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-import useSWR from 'swr'
 import BtnAction from '../../../components/elements/BtnAction'
 import { CornerUpLeft } from 'react-feather'
 import { useState, useEffect } from 'react'

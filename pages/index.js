@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import UserListItem from '../components/elements/UserListItem'
 import { User } from 'react-feather';
-import useSWR from 'swr';
 import { useState, useEffect } from 'react';
 
 export default function Users() {
