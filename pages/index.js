@@ -26,7 +26,6 @@ export default function Users() {
     <>
       <Head>
         <title key="title">Lista de usuarios | Technical Test Hiberus</title>
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
       </Head>
 
       <h1 className=" flex justify-between items-center text-xl text-white mb-4">
