@@ -24,7 +24,7 @@ export default function Layout({ children }) {
     <>
       <section className="flex justify-between flex-col min-h-screen min-w-full px-4 sm:px-6 lg:px-8">
         <div className="flex-grow justify-center mt-16 sm:mt-20 container mx-auto max-w-3xl">
-          <BtnAction onClick={logout} title="Cerrar sesión" styles="text-sm border-0 mb-4 ml-auto" icon={<LogOut size={16} className="mr-2" />} />
+        sessionStorage.getItem("accessToken") !== null && <BtnAction onClick={logout} title="Cerrar sesión" styles="text-sm border-0 mb-4 ml-auto" icon={<LogOut size={16} className="mr-2" />} />
           <div className="sm:bg-white sm:bg-opacity-5 rounded-xl sm:p-10">
             <img className="m-auto mb-8 w-40" src="/logo.svg" alt="" />
             {children}
