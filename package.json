@@ -1,27 +1,30 @@
 {
   "name": "technical-test-hiberus",
+  "homepage": "https://qu4k3.github.io/tthj/",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "deploy" : "gh-pages -d build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@headlessui/react": "^1.4.0",
+    "@headlessui/react": "1.4.0",
     "next": "11.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-feather": "^2.0.9",
-    "react-hook-form": "^7.12.2",
-    "react-hot-toast": "^2.1.0"
+    "react-feather": "2.0.9",
+    "react-hook-form": "7.12.2",
+    "react-hot-toast": "2.1.0"
   },
   "devDependencies": {
-    "autoprefixer": "^10.3.1",
+    "autoprefixer": "10.3.1",
     "eslint": "7.32.0",
     "eslint-config-next": "11.0.1",
-    "postcss": "^8.3.6",
-    "tailwindcss": "^2.2.7"
+    "gh-pages": "5.0.0",
+    "postcss": "8.3.6",
+    "tailwindcss": "2.2.7"
   }
 }
